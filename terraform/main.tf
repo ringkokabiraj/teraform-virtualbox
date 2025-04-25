@@ -21,7 +21,7 @@ resource "virtualbox_vm" "ubuntu_vm" {
       port     = 0
       device   = 0
       type     = "hdd"
-      image    = ""E:\Software\ubuntu-22-04.vdi"
+      image    = ""E:\\Software\\ubuntu-22-04.vdi"
       size     = 15000 # size in MB
     }
 
