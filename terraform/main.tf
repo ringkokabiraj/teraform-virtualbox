@@ -1,13 +1,3 @@
-terraform {
-  required_providers {
-    virtualbox = {
-      source  = "terra-farm/virtualbox"
-      version = ">= 0.2.2"
-    }
-  }
-}
-
-provider "virtualbox" {}
 
 resource "virtualbox_vm" "ubuntu_vm" {
   name   = "ubuntu-vm"
