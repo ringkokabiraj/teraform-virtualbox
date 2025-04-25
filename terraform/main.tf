@@ -1,35 +1,34 @@
-provider "virtualbox" {
-  version = ">= 0.2.2"
+terraform {
+  required_providers {
+    virtualbox = {
+      source  = "terra-farm/virtualbox"
+      version = ">= 0.2.2"
+    }
+  }
 }
 
+provider "virtualbox" {}
+
 resource "virtualbox_vm" "ubuntu_vm" {
-  name   = "ubuntu-22-04-vm"
+  name   = "ubuntu-vm"
+  image  = "E:/Software/ubuntu-22-04.vdi"
   cpus   = 2
-  memory = "2048 mib"
+  memory = "1024 mib"
 
-  image = "E:/Software/ubuntu-22.04.5-live-server-amd64.iso"
-
-  network_adapter {
-    type = "nat"
+  disk {
+    image = "E:/Software/ubuntu-22-04.vdi"
+    size  = 15000
   }
 
-  storage_controller {
-    name = "SATA Controller"
-    type = "sata"
+  network_adapter {
+    type           = "nat"
+    host_interface = "Ethernet"
+  }
 
-    device {
-      port     = 0
-      device   = 0
-      type     = "hdd"
-      image    = ""E:/Software/ubuntu-22-04.vdi"
-      size     = 15000 # size in MB
-    }
-
-    device {
-      port     = 1
-      device   = 0
-      type     = "dvd"
-      image    = "E:/Software/ubuntu-22.04.5-live-server-amd64.iso"
-    }
+  device {
+    port   = 1
+    device = 0
+    type   = "dvd"
+    image  = "E:/Software/ubuntu-22.04.5-live-server-amd64.iso"
   }
 }
